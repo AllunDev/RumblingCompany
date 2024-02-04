@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj": {}
+    "d:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj": {
+    "d:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj",
+        "projectUniqueName": "d:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj",
         "projectName": "RumblingCompany",
-        "projectPath": "D:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj",
+        "projectPath": "d:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj",
         "packagesPath": "C:\\Users\\allan\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\RumblingCompany\\RumblingCompany\\obj\\",
+        "outputPath": "d:\\Projects\\RumblingCompany\\RumblingCompany\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "D:\\Projects\\RumblingCompany\\RumblingCompany\\NuGet.Config",
+          "d:\\Projects\\RumblingCompany\\RumblingCompany\\NuGet.Config",
           "C:\\Users\\allan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -54,6 +54,14 @@
             "BepInEx.PluginInfoProps": {
               "target": "Package",
               "version": "[1.*, )"
+            },
+            "Buttplug": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "Buttplug.Client.Connectors.WebsocketConnector": {
+              "target": "Package",
+              "version": "[3.0.1, )"
             },
             "UnityEngine.Modules": {
               "include": "Compile",
