@@ -1,0 +1,11 @@
+D:\Projects\RumblingCompany\RumblingCompany\bin\Debug\netstandard2.1\RumblingCompany.deps.json
+D:\Projects\RumblingCompany\RumblingCompany\bin\Debug\netstandard2.1\RumblingCompany.dll
+D:\Projects\RumblingCompany\RumblingCompany\bin\Debug\netstandard2.1\RumblingCompany.pdb
+D:\Projects\RumblingCompany\RumblingCompany\obj\Debug\netstandard2.1\RumblingCompany.csproj.AssemblyReference.cache
+D:\Projects\RumblingCompany\RumblingCompany\obj\Debug\netstandard2.1\PluginInfo.cs
+D:\Projects\RumblingCompany\RumblingCompany\obj\Debug\netstandard2.1\RumblingCompany.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\RumblingCompany\RumblingCompany\obj\Debug\netstandard2.1\RumblingCompany.AssemblyInfoInputs.cache
+D:\Projects\RumblingCompany\RumblingCompany\obj\Debug\netstandard2.1\RumblingCompany.AssemblyInfo.cs
+D:\Projects\RumblingCompany\RumblingCompany\obj\Debug\netstandard2.1\RumblingCompany.csproj.CoreCompileInputs.cache
+D:\Projects\RumblingCompany\RumblingCompany\obj\Debug\netstandard2.1\RumblingCompany.dll
+D:\Projects\RumblingCompany\RumblingCompany\obj\Debug\netstandard2.1\RumblingCompany.pdb
