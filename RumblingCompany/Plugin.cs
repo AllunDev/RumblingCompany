@@ -21,6 +21,7 @@ namespace RumblingCompany
             var harmony = new Harmony(PluginInfo.PLUGIN_GUID);
             harmony.PatchAll(typeof(Patches.PlayerControllerBPatch));
             harmony.PatchAll(typeof(Patches.HUDManagerPatch));
+            harmony.PatchAll(typeof(Patches.ItemChargerPatch));
 
 
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
