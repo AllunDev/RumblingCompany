@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GNRHRp8qM4hdtxVPT4M//KnqqD6MQcAegK0Uy8oVY95pGaJ45d/VnVlVxeZ1KPwHd38rIYhBAY/DgIKJravztg==",
+  "dgSpecHash": "BcBvbMQvYxWvpNf3DBRbsesnbAIrSPQlqFZ0CS3v0zjV4CCWsnc/8/8c3Nxj1UqQbuJc2E8ekNNIuz2e/j9CiQ==",
   "success": true,
-  "projectFilePath": "d:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj",
+  "projectFilePath": "D:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\allan\\.nuget\\packages\\bepinex.analyzers\\1.0.8\\bepinex.analyzers.1.0.8.nupkg.sha512",
     "C:\\Users\\allan\\.nuget\\packages\\bepinex.baselib\\5.4.20\\bepinex.baselib.5.4.20.nupkg.sha512",

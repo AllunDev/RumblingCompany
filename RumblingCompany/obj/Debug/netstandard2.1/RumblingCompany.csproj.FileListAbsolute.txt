@@ -9,3 +9,6 @@ D:\Projects\RumblingCompany\RumblingCompany\obj\Debug\netstandard2.1\RumblingCom
 D:\Projects\RumblingCompany\RumblingCompany\obj\Debug\netstandard2.1\RumblingCompany.csproj.CoreCompileInputs.cache
 D:\Projects\RumblingCompany\RumblingCompany\obj\Debug\netstandard2.1\RumblingCompany.dll
 D:\Projects\RumblingCompany\RumblingCompany\obj\Debug\netstandard2.1\RumblingCompany.pdb
+D:\Projects\RumblingCompany\RumblingCompany\bin\Debug\netstandard2.1\Assembly-CSharp.dll
+D:\Projects\RumblingCompany\RumblingCompany\bin\Debug\netstandard2.1\Unity.Netcode.Runtime.dll
+D:\Projects\RumblingCompany\RumblingCompany\obj\Debug\netstandard2.1\RumblingCompany.csproj.CopyComplete

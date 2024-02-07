@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj": {}
+    "D:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj": {}
   },
   "projects": {
-    "d:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj": {
+    "D:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj",
+        "projectUniqueName": "D:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj",
         "projectName": "RumblingCompany",
-        "projectPath": "d:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj",
+        "projectPath": "D:\\Projects\\RumblingCompany\\RumblingCompany\\RumblingCompany.csproj",
         "packagesPath": "C:\\Users\\allan\\.nuget\\packages\\",
-        "outputPath": "d:\\Projects\\RumblingCompany\\RumblingCompany\\obj\\",
+        "outputPath": "D:\\Projects\\RumblingCompany\\RumblingCompany\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "d:\\Projects\\RumblingCompany\\RumblingCompany\\NuGet.Config",
+          "D:\\Projects\\RumblingCompany\\RumblingCompany\\NuGet.Config",
           "C:\\Users\\allan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
