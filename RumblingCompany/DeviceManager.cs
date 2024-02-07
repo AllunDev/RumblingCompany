@@ -17,8 +17,10 @@ namespace RumblingCompany
         private float vibrationIncreasePerSecond = 2f;
         private float vibrationDecreasePerSecond = 0.25f;
 
+        
         public bool isRunning = false;
         public bool isUsingJetpack = false;
+        public bool isSpectating = false;
 
         public DeviceManager(string clientName)
         {
@@ -62,6 +64,8 @@ namespace RumblingCompany
             if (isRunning) continuous += 0.2f;
 
             if (isUsingJetpack) continuous += 0.5f;
+
+            if (isSpectating) continuous += 0.25f;
 
             return spikeVibration + continuous;
         }

@@ -48,6 +48,14 @@ namespace RumblingCompany.Patches
 
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
+        private static void IsSpectatingPatch(ref PlayerControllerB __instance){
+            if (__instance != GameNetworkManager.Instance.localPlayerController) return;
+
+            Plugin.DeviceManager.isSpectating = __instance.hasBegunSpectating;
+        }
+
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]
         private static void Vibrate(ref PlayerControllerB __instance){
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
 
