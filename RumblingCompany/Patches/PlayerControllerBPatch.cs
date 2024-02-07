@@ -34,9 +34,16 @@ namespace RumblingCompany.Patches
         [HarmonyPostfix]
         private static void IsSprintingPatch(ref PlayerControllerB __instance){
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
-            // if (__instance.isSprinting) Plugin.Mls.LogInfo($"Client is sprinting, vibrating");
 
             Plugin.DeviceManager.isRunning = __instance.isSprinting;
+        }
+
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]
+        private static void IsUsingJetpackPatch(ref PlayerControllerB __instance){
+            if (__instance != GameNetworkManager.Instance.localPlayerController) return;
+
+            Plugin.DeviceManager.isUsingJetpack = __instance.jetpackControls;
         }
 
         [HarmonyPatch("Update")]

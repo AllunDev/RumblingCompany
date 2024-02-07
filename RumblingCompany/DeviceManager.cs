@@ -15,9 +15,10 @@ namespace RumblingCompany
         private float currentVibration = 0f;
         private float spikeVibration = 0f;
         private float vibrationIncreasePerSecond = 2f;
-        private float vibrationDecreasePerSecond = 0.1f;
+        private float vibrationDecreasePerSecond = 0.25f;
 
         public bool isRunning = false;
+        public bool isUsingJetpack = false;
 
         public DeviceManager(string clientName)
         {
@@ -44,10 +45,7 @@ namespace RumblingCompany
 
             ConnectedDevices.ForEach(Action);
 
-            if (currentVibration > 0f)
-            {
-                // Plugin.Mls.LogInfo($"Current vibration: {Mathf.CeilToInt(currentVibration * 100)}");
-            }
+            if (currentVibration > 0f) Plugin.Mls.LogInfo($"Current vibration: {Mathf.CeilToInt(currentVibration * 100)}");
             
             spikeVibration = Mathf.Clamp(spikeVibration - vibrationDecreasePerSecond * Time.deltaTime, 0f, 2f);
         }
@@ -62,6 +60,8 @@ namespace RumblingCompany
             float continuous = 0f;
 
             if (isRunning) continuous += 0.2f;
+
+            if (isUsingJetpack) continuous += 0.5f;
 
             return spikeVibration + continuous;
         }
