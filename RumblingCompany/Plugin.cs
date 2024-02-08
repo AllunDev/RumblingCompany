@@ -23,6 +23,7 @@ namespace RumblingCompany
             harmony.PatchAll(typeof(Patches.HUDManagerPatch));
             harmony.PatchAll(typeof(Patches.ItemChargerPatch));
             harmony.PatchAll(typeof(Patches.WalkieTalkiePatch));
+            harmony.PatchAll(typeof(Patches.EnemyAIPatch));
 
 
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");

@@ -49,7 +49,7 @@ namespace RumblingCompany
 
             ConnectedDevices.ForEach(Action);
 
-            if (currentVibration > 0f) Plugin.Mls.LogInfo($"Current vibration: {Mathf.CeilToInt(currentVibration * 100)}");
+            // if (currentVibration > 0f) Plugin.Mls.LogInfo($"Current vibration: {Mathf.CeilToInt(currentVibration * 100)}");
             
             spikeVibration = Mathf.Clamp(spikeVibration - vibrationDecreasePerSecond * Time.deltaTime, 0f, 2f);
         }
