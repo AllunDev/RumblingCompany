@@ -15,16 +15,17 @@ namespace RumblingCompany.Patches
 
         [HarmonyPatch(typeof(PlayerControllerB), "KillPlayer")]
         [HarmonyPostfix]
-        private static void OnKilledPatch(){
+        private static void OnKilledPatch(ref PlayerControllerB __instance){
+            if (__instance != GameNetworkManager.Instance.localPlayerController) return;
             Plugin.Mls.LogInfo($"Client was killed, vibrating");
             Plugin.DeviceManager.increaseVibration(1f);
         }
 
         [HarmonyPatch(typeof(PlayerControllerB), "Jump_performed")]
-        [HarmonyPostfix]
-        private static void OnJumpPatch(ref PlayerControllerB __instance){
+        [HarmonyPrefix]
+        private static void OnJumpPatch(ref PlayerControllerB __instance, ref bool ___isJumping){
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
-            if (!__instance.thisController.isGrounded) return;
+            if (!__instance.thisController.isGrounded || ___isJumping) return;
 
             Plugin.Mls.LogInfo($"Client jumped, vibrating");
             Plugin.DeviceManager.increaseVibration(0.25f);

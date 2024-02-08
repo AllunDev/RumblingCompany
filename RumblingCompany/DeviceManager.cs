@@ -22,6 +22,7 @@ namespace RumblingCompany
         public bool isUsingJetpack = false;
         public bool isSpectating = false;
         public bool isUsingWalkieTalkie = false;
+        public bool isRecievingWalkieTalkie = false;
 
         public DeviceManager(string clientName)
         {
@@ -69,6 +70,8 @@ namespace RumblingCompany
             if (isSpectating) continuous += 0.15f;
 
             if (isUsingWalkieTalkie) continuous += 0.2f;
+
+            if (isRecievingWalkieTalkie) continuous += 0.25f;
 
             return spikeVibration + continuous;
         }
