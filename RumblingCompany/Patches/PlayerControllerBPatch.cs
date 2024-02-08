@@ -26,6 +26,7 @@ namespace RumblingCompany.Patches
         private static void OnJumpPatch(ref PlayerControllerB __instance, ref bool ___isJumping){
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
             if (!__instance.thisController.isGrounded || ___isJumping) return;
+            if (__instance.inTerminalMenu) return;
 
             Plugin.Mls.LogInfo($"Client jumped, vibrating");
             Plugin.DeviceManager.increaseVibration(0.25f);
