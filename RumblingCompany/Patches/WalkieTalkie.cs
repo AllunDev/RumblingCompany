@@ -1,4 +1,5 @@
 using HarmonyLib;
+using System.Collections.Generic;
 
 namespace RumblingCompany.Patches
 {
@@ -13,19 +14,24 @@ namespace RumblingCompany.Patches
         }
 
 
-        /***    Couldn't get this to work, will do something simpler and come back here later    ***/
+        [HarmonyPatch(typeof(WalkieTalkie), "Update")]
+        [HarmonyPostfix]
+        private static void RecievingWalkieTalkiePatch(ref WalkieTalkie __instance, ref List<WalkieTalkie> ___allWalkieTalkies){
+            if (!GameNetworkManager.Instance.localPlayerController.holdingWalkieTalkie) return;
+            if (GameNetworkManager.Instance.localPlayerController != __instance.playerHeldBy) return;
 
-        // [HarmonyPatch(typeof(WalkieTalkie), "EnableWalkieTalkieListening")]
-        // [HarmonyPostfix]
-        // private static void RecievingWalkieTalkiePatch(){
-        //     // if (otherClientIsTransmittingAudios == null){
-        //     //     Plugin.DeviceManager.isRecievingWalkieTalkie = false;
-        //     //     return;   
-        //     // }
+            foreach (var walkieTalkie in ___allWalkieTalkies)
+            {
+                if (walkieTalkie.isBeingUsed && walkieTalkie != __instance && walkieTalkie.clientIsHoldingAndSpeakingIntoThis)
+                {
+                    Plugin.DeviceManager.isRecievingWalkieTalkie = true;
 
-        //     Plugin.Mls.LogInfo($"Client is recieving walkie talkie, vibrating");
+                    return;
+                }
+            }
 
-        //     // Plugin.DeviceManager.isRecievingWalkieTalkie = ___otherClientIsTransmittingAudios;
-        // }
+            Plugin.DeviceManager.isRecievingWalkieTalkie = false;
+        }
+
     }
 }
