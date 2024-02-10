@@ -58,6 +58,29 @@ namespace RumblingCompany.Patches
 
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
+        private static void BeingZappedByZapGunPatch(ref PlayerControllerB __instance){
+            if (GameNetworkManager.Instance.localPlayerController != __instance) return;
+
+            if (__instance.hinderedMultiplier < 3.5)
+            {
+                Plugin.DeviceManager.isBeingZapped = false;
+
+                return;
+            }
+
+            Plugin.DeviceManager.isBeingZapped = true;
+        }
+
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]
+        private static void ZappingWithZapGunPatch(ref PlayerControllerB __instance){
+            if (GameNetworkManager.Instance.localPlayerController != __instance) return;
+
+            Plugin.DeviceManager.isZapping = __instance.inShockingMinigame;
+        }
+
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]
         private static void Vibrate(ref PlayerControllerB __instance){
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
 
