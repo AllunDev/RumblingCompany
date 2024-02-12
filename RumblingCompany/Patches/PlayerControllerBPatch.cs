@@ -9,32 +9,40 @@ namespace RumblingCompany.Patches
         [HarmonyPatch(typeof(PlayerControllerB), "DamagePlayer")]
         [HarmonyPostfix]
         private static void OnDamagePatch(int damageNumber){
-            Plugin.Mls.LogInfo($"Client was hurt, vibrating");
+            if (!Config.HurtEnabled.Value) return;
+
+            Plugin.Mls.LogInfo($"Client was hurt, spiking vibration (+ {damageNumber}%)");
             Plugin.DeviceManager.increaseVibration(damageNumber / 100f);
         }
 
         [HarmonyPatch(typeof(PlayerControllerB), "KillPlayer")]
         [HarmonyPostfix]
         private static void OnKilledPatch(ref PlayerControllerB __instance){
+            if (!Config.DiedEnabled.Value) return;
+            
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
-            Plugin.Mls.LogInfo($"Client was killed, vibrating");
-            Plugin.DeviceManager.increaseVibration(1f);
+
+            Plugin.Mls.LogInfo($"Client died, spiking vibration (+ {Config.DiedStrength.Value * 100}%)");
+            Plugin.DeviceManager.increaseVibration(Config.DiedStrength.Value);
         }
 
         [HarmonyPatch(typeof(PlayerControllerB), "Jump_performed")]
         [HarmonyPrefix]
         private static void OnJumpPatch(ref PlayerControllerB __instance, ref bool ___isJumping){
-            if (__instance != GameNetworkManager.Instance.localPlayerController) return;
-            if (!__instance.thisController.isGrounded || ___isJumping) return;
-            if (__instance.inTerminalMenu) return;
+            if (!Config.JumpingEnabled.Value) return;
 
-            Plugin.Mls.LogInfo($"Client jumped, vibrating");
-            Plugin.DeviceManager.increaseVibration(0.25f);
+            if (__instance != GameNetworkManager.Instance.localPlayerController) return;
+            if (!__instance.thisController.isGrounded || ___isJumping || __instance.inTerminalMenu) return;
+
+            Plugin.Mls.LogInfo($"Client jumped, spiking vibration (+ {Config.JumpingStrength.Value * 100}%)");
+            Plugin.DeviceManager.increaseVibration(Config.JumpingStrength.Value);
         }
 
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
         private static void IsSprintingPatch(ref PlayerControllerB __instance){
+            if (!Config.RunningEnabled.Value) return;
+
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
 
             Plugin.DeviceManager.isRunning = __instance.isSprinting;
@@ -43,6 +51,8 @@ namespace RumblingCompany.Patches
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
         private static void IsUsingJetpackPatch(ref PlayerControllerB __instance){
+            if (!Config.JetpackEnabled.Value) return;
+
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
 
             Plugin.DeviceManager.isUsingJetpack = __instance.jetpackControls;
@@ -51,6 +61,8 @@ namespace RumblingCompany.Patches
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
         private static void IsSpectatingPatch(ref PlayerControllerB __instance){
+            if (!Config.SpectatingEnabled.Value) return;
+
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
 
             Plugin.DeviceManager.isSpectating = __instance.hasBegunSpectating;
@@ -59,6 +71,8 @@ namespace RumblingCompany.Patches
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
         private static void BeingZappedByZapGunPatch(ref PlayerControllerB __instance){
+            if (!Config.BeingZappedEnabled.Value) return;
+
             if (GameNetworkManager.Instance.localPlayerController != __instance) return;
 
             if (__instance.hinderedMultiplier < 3.5)
@@ -74,6 +88,8 @@ namespace RumblingCompany.Patches
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
         private static void ZappingWithZapGunPatch(ref PlayerControllerB __instance){
+            if (!Config.ZappingEnabled.Value) return;
+
             if (GameNetworkManager.Instance.localPlayerController != __instance) return;
 
             Plugin.DeviceManager.isZapping = __instance.inShockingMinigame;

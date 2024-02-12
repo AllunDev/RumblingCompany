@@ -11,16 +11,19 @@ namespace RumblingCompany.Patches
         private static void HitEnemyPatch(PlayerControllerB playerWhoHit, ref int ___enemyHP){
             if (playerWhoHit != GameNetworkManager.Instance.localPlayerController || ___enemyHP == 0) return;
 
-            if (___enemyHP == 1)
+            if (___enemyHP == 1 && Config.KillingEnabled.Value)
             {
-                Plugin.Mls.LogInfo($"Client killed enemy, vibrating");
-                Plugin.DeviceManager.increaseVibration(0.70f);
+                Plugin.Mls.LogInfo($"Client killed enemy, spiking vibration (+ {Config.KillingStrength.Value * 100}%)");
+
+                Plugin.DeviceManager.increaseVibration(Config.KillingStrength.Value);
 
                 return;
             }
 
-            Plugin.Mls.LogInfo($"Client hit enemy, vibrating");
-            Plugin.DeviceManager.increaseVibration(0.3f);
+            if (!Config.DealingDamageEnabled.Value) return;
+
+            Plugin.Mls.LogInfo($"Client hit enemy, spiking vibration (+ {Config.DealingDamageStrength.Value * 100}%)");
+            Plugin.DeviceManager.increaseVibration(Config.DealingDamageStrength.Value);
         }
     }
 }

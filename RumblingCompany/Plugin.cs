@@ -9,6 +9,8 @@ namespace RumblingCompany
     {
         internal static DeviceManager DeviceManager { get; private set; }
         internal static ManualLogSource Mls { get; private set; }
+        public static bool VibrateOnJumpToggle;
+        public static float VibrateOnJumpStrength;
 
         private void Awake()
         {
@@ -25,7 +27,6 @@ namespace RumblingCompany
             harmony.PatchAll(typeof(Patches.WalkieTalkiePatch));
             harmony.PatchAll(typeof(Patches.EnemyAIPatch));
             harmony.PatchAll(typeof(Patches.RoundManagerPatch));
-
 
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
         }

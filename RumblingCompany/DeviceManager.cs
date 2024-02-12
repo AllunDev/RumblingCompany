@@ -29,7 +29,7 @@ namespace RumblingCompany
         public DeviceManager(string clientName)
         {
             ConnectedDevices = new List<ButtplugClientDevice>();
-            Plugin.Mls.LogInfo($"Attempting to connect to Intiface server at ws://localhost:12345");
+            Plugin.Mls.LogInfo($"Attempting to connect to Intiface server at {Config.ServerAdress.Value}");
             ButtplugClient = new ButtplugClient(clientName);
             Plugin.Mls.LogInfo("Connection successful. Beginning scan for devices");
 
@@ -51,7 +51,7 @@ namespace RumblingCompany
 
             ConnectedDevices.ForEach(Action);
 
-            // if (currentVibration > 0f) Plugin.Mls.LogInfo($"Current vibration: {Mathf.CeilToInt(currentVibration * 100)}");
+            if (currentVibration > 0) Plugin.Mls.LogInfo($"Vibration [Current: {Mathf.CeilToInt(currentVibration * 100)}] [Target: {Mathf.CeilToInt(targetVibration * 100)}] [Spiked: {Mathf.CeilToInt(spikeVibration * 100)}]");
             
             spikeVibration = Mathf.Clamp(spikeVibration - vibrationDecreasePerSecond * Time.deltaTime, 0f, 2f);
         }
@@ -65,19 +65,19 @@ namespace RumblingCompany
         {
             float continuous = 0f;
 
-            if (isRunning) continuous += 0.2f;
+            if (isRunning) continuous += Config.RunningStrength.Value;
 
-            if (isUsingJetpack) continuous += 0.5f;
+            if (isUsingJetpack) continuous += Config.JetpackStrength.Value;
 
-            if (isSpectating) continuous += 0.15f;
+            if (isSpectating) continuous += Config.SpectatingStrength.Value;
 
-            if (isUsingWalkieTalkie) continuous += 0.2f;
+            if (isUsingWalkieTalkie) continuous += Config.UsingWalkieTalkieStrength.Value;
 
-            if (isRecievingWalkieTalkie) continuous += 0.25f;
+            if (isRecievingWalkieTalkie) continuous += Config.ReceivingWalkieTalkieStrength.Value;
             
-            if (isZapping) continuous += 0.3f;
+            if (isZapping) continuous += Config.ZappingStrength.Value;
 
-            if (isBeingZapped) continuous += 0.8f;
+            if (isBeingZapped) continuous += Config.BeingZappedStrength.Value;
 
             return spikeVibration + continuous;
         }
@@ -88,7 +88,7 @@ namespace RumblingCompany
 
             try
             {
-                await ButtplugClient.ConnectAsync(new ButtplugWebsocketConnector(new Uri("ws://localhost:12345")));
+                await ButtplugClient.ConnectAsync(new ButtplugWebsocketConnector(new Uri(Config.ServerAdress.Value)));
                 await ButtplugClient.StartScanningAsync();
             }
             catch (ButtplugException)

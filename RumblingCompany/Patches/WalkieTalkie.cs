@@ -9,7 +9,9 @@ namespace RumblingCompany.Patches
         [HarmonyPatch(typeof(WalkieTalkie), "SetLocalClientSpeaking")]
         [HarmonyPostfix]
         private static void UsingWalkieTalkiePatch(bool speaking){
-            if (speaking) Plugin.Mls.LogInfo($"Client is using walkie talkie, vibrating");
+            if (!Config.UsingWalkieTalkieEnabled.Value) return;
+            
+            // if (speaking) Plugin.Mls.LogInfo($"Client is using walkie talkie, vibrating");
             Plugin.DeviceManager.isUsingWalkieTalkie = speaking;
         }
 
@@ -17,6 +19,8 @@ namespace RumblingCompany.Patches
         [HarmonyPatch(typeof(WalkieTalkie), "Update")]
         [HarmonyPostfix]
         private static void RecievingWalkieTalkiePatch(ref WalkieTalkie __instance, ref List<WalkieTalkie> ___allWalkieTalkies){
+            if (!Config.ReceivingWalkieTalkieEnabled.Value) return;
+
             if (!GameNetworkManager.Instance.localPlayerController.holdingWalkieTalkie) return;
             if (GameNetworkManager.Instance.localPlayerController != __instance.playerHeldBy) return;
 
