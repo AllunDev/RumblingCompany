@@ -51,7 +51,7 @@ namespace RumblingCompany
 
             ConnectedDevices.ForEach(Action);
 
-            if (currentVibration > 0) Plugin.Mls.LogInfo($"Vibration [Current: {Mathf.CeilToInt(currentVibration * 100)}] [Target: {Mathf.CeilToInt(targetVibration * 100)}] [Spiked: {Mathf.CeilToInt(spikeVibration * 100)}]");
+            // if (currentVibration > 0) Plugin.Mls.LogInfo($"Vibration [Current: {Mathf.CeilToInt(currentVibration * 100)}] [Target: {Mathf.CeilToInt(targetVibration * 100)}] [Spiked: {Mathf.CeilToInt(spikeVibration * 100)}]");
             
             spikeVibration = Mathf.Clamp(spikeVibration - vibrationDecreasePerSecond * Time.deltaTime, 0f, 2f);
         }
