@@ -7,6 +7,8 @@ namespace RumblingCompany
         private static ConfigFile ConfigFile { get; set; }
 
         internal static ConfigEntry<string> ServerAdress { get; set; }
+        internal static ConfigEntry<float> VibrationIncreasePerSecond { get; set; }
+        internal static ConfigEntry<float> VibrationDecreasePerSecond { get; set; }
 
         internal static ConfigEntry<bool> DiedEnabled { get; set; }
         internal static ConfigEntry<float> DiedStrength { get; set; }
@@ -44,12 +46,16 @@ namespace RumblingCompany
         {
             ConfigFile = new ConfigFile(Paths.ConfigPath + "\\RumblingCompany.cfg", true);
 
+             #region General
             ServerAdress = ConfigFile.Bind(
-                "1.Connection",
+                "1.General",
                 "Server Adress",
                 "ws://localhost:12345",
-                "Intiface sercer adress."
+                "Intiface server adress."
             );
+            VibrationIncreasePerSecond = ConfigFile.Bind("1.General.Increase", "Strength", 2f, "How fast vibrations increase");
+            VibrationDecreasePerSecond = ConfigFile.Bind("1.General.Decrease", "Strength", 0.25f, "How fast vibrations decrease");
+            #endregion
 
             #region Punishment
             DiedEnabled = ConfigFile.Bind("2.Punishment.Died", "Enabled", true, "Vibrate when killed");
@@ -57,7 +63,7 @@ namespace RumblingCompany
 
             HurtEnabled = ConfigFile.Bind("2.Punishment.WasHurt", "Enabled", true, "Vibrate when hurt (Intensity based on damage taken)");
 
-            SpectatingEnabled = ConfigFile.Bind("2.Punishment.Spectating", "Enabled", true, "Vibrate when spectating other players");
+            SpectatingEnabled = ConfigFile.Bind("2.Punishment.Spectating", "Enabled", false, "Vibrate when spectating other players");
             SpectatingStrength = ConfigFile.Bind("2.Punishment.Spectating", "Strength", 0.2f, "Intensity of vibrations while spectating");
 
             BeingZappedEnabled = ConfigFile.Bind("2.Punishment.Zapped", "Enabled", true, "Vibrate when being zapped");
@@ -76,7 +82,7 @@ namespace RumblingCompany
             ZappingStrength = ConfigFile.Bind("3.Reward.Zapping", "Strength", 0.5f, "Intensity of vibrations while zapping others with the Zap Gun");
 
             CollectionEnabled = ConfigFile.Bind("3.Reward.CollectedScrap", "Enabled", true, "Vibrate when collecting scrap");
-            CollectionStrength = ConfigFile.Bind("3.Reward.CollectedScrap", "Strength", 0.5f, "Intensity of vibrations from collecting scrap");         
+            CollectionStrength = ConfigFile.Bind("3.Reward.CollectedScrap", "Strength", 0.5f, "Intensity of vibrations from collecting scrap");
             #endregion
 
 

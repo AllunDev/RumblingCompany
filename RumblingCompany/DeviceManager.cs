@@ -14,8 +14,8 @@ namespace RumblingCompany
 
         private float currentVibration = 0f;
         private float spikeVibration = 0f;
-        private float vibrationIncreasePerSecond = 2f;
-        private float vibrationDecreasePerSecond = 0.25f;
+        private float vibrationIncreasePerSecond = Config.VibrationIncreasePerSecond.Value;
+        private float vibrationDecreasePerSecond = Config.VibrationDecreasePerSecond.Value;
 
         
         public bool isRunning = false;

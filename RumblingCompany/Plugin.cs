@@ -9,8 +9,6 @@ namespace RumblingCompany
     {
         internal static DeviceManager DeviceManager { get; private set; }
         internal static ManualLogSource Mls { get; private set; }
-        public static bool VibrateOnJumpToggle;
-        public static float VibrateOnJumpStrength;
 
         private void Awake()
         {
