@@ -2,7 +2,7 @@
     "name": "RumblingCompany",
     "version_number": "0.0.1",
     "website_url": "https://github.com/AllunDev/RumblingCompany",
-    "description": "Connect vibrating devices to help you play better",
+    "description": "Connect your vibrating devices to improve the games tactile feedback",
     "dependencies": [
       "BepInEx-BepInExPack-5.4.2100"
     ]
