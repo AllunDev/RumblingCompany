@@ -64,7 +64,7 @@ namespace RumblingCompany
             );
             VibrationIncreasePerSecond = ConfigFile.Bind("1 General", "Vibration Increase Per Second", 2f, "How fast vibrations increase.");
             VibrationDecreasePerSecond = ConfigFile.Bind("1 General", "Vibration Decrease Per Second", 0.25f, "How fast vibrations decrease.");
-            EnableDebugging = ConfigFile.Bind("1 General", "Enable Debugging", false, "Enable debugging.");
+            EnableDebugging = ConfigFile.Bind("1 General", "Enable Debugging", false, "Enable debugging. (!!Console spam!!)");
             #endregion
 
             #region Punishment

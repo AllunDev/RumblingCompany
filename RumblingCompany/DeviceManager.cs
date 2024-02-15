@@ -14,9 +14,6 @@ namespace RumblingCompany
 
         private float currentVibration = 0f;
         private float spikeVibration = 0f;
-        private float vibrationIncreasePerSecond = Config.VibrationIncreasePerSecond.Value;
-        private float vibrationDecreasePerSecond = Config.VibrationDecreasePerSecond.Value;
-
         
         public bool isRunning = false;
         public bool isUsingJetpack = false;
@@ -42,7 +39,7 @@ namespace RumblingCompany
         {
             float targetVibration = calculateVibrationTarget();
 
-            currentVibration = currentVibration < targetVibration ? Mathf.Clamp(currentVibration + vibrationIncreasePerSecond * Time.deltaTime, 0f, Mathf.Min(targetVibration, 1f)) : Mathf.Clamp01(currentVibration - vibrationDecreasePerSecond * Time.deltaTime);
+            currentVibration = currentVibration < targetVibration ? Mathf.Clamp(currentVibration + Config.VibrationIncreasePerSecond.Value * Time.deltaTime, 0f, Mathf.Min(targetVibration, 1f)) : Mathf.Clamp01(currentVibration - Config.VibrationDecreasePerSecond.Value * Time.deltaTime);
 
             async void Action(ButtplugClientDevice device)
             {
@@ -51,9 +48,9 @@ namespace RumblingCompany
 
             ConnectedDevices.ForEach(Action);
 
-            // if (currentVibration > 0) Plugin.Mls.LogInfo($"Vibration [Current: {Mathf.CeilToInt(currentVibration * 100)}] [Target: {Mathf.CeilToInt(targetVibration * 100)}] [Spiked: {Mathf.CeilToInt(spikeVibration * 100)}]");
+            if (Config.EnableDebugging.Value && currentVibration > 0) Plugin.Mls.LogInfo($"Vibration [Current: {Mathf.CeilToInt(currentVibration * 100)}] [Target: {Mathf.CeilToInt(targetVibration * 100)}] [Spiked: {Mathf.CeilToInt(spikeVibration * 100)}]");
             
-            spikeVibration = Mathf.Clamp(spikeVibration - vibrationDecreasePerSecond * Time.deltaTime, 0f, 2f);
+            spikeVibration = Mathf.Clamp(spikeVibration - Config.VibrationDecreasePerSecond.Value * Time.deltaTime, 0f, 2f);
         }
 
         public void increaseVibration(float increase)
