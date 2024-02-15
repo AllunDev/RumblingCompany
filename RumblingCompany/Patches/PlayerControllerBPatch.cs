@@ -9,7 +9,7 @@ namespace RumblingCompany.Patches
         [HarmonyPatch(typeof(PlayerControllerB), "DamagePlayer")]
         [HarmonyPostfix]
         private static void OnDamagePatch(int damageNumber){
-            if (!Config.HurtEnabled.Value) return;
+            if (!Config.VibrateOnTakingDamage.Value) return;
 
             Plugin.Mls.LogInfo($"Client was hurt, spiking vibration (+ {damageNumber}%)");
             Plugin.DeviceManager.increaseVibration(damageNumber / 100f);
@@ -18,30 +18,30 @@ namespace RumblingCompany.Patches
         [HarmonyPatch(typeof(PlayerControllerB), "KillPlayer")]
         [HarmonyPostfix]
         private static void OnKilledPatch(ref PlayerControllerB __instance){
-            if (!Config.DiedEnabled.Value) return;
+            if (!Config.VibrateOnDeath.Value) return;
             
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
 
-            Plugin.Mls.LogInfo($"Client died, spiking vibration (+ {Config.DiedStrength.Value * 100}%)");
-            Plugin.DeviceManager.increaseVibration(Config.DiedStrength.Value);
+            Plugin.Mls.LogInfo($"Client died, spiking vibration (+ {Config.VibrateOnDeathStrength.Value * 100}%)");
+            Plugin.DeviceManager.increaseVibration(Config.VibrateOnDeathStrength.Value);
         }
 
         [HarmonyPatch(typeof(PlayerControllerB), "Jump_performed")]
         [HarmonyPrefix]
         private static void OnJumpPatch(ref PlayerControllerB __instance, ref bool ___isJumping){
-            if (!Config.JumpingEnabled.Value) return;
+            if (!Config.VibrateOnJump.Value) return;
 
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
             if (!__instance.thisController.isGrounded || ___isJumping || __instance.inTerminalMenu) return;
 
-            Plugin.Mls.LogInfo($"Client jumped, spiking vibration (+ {Config.JumpingStrength.Value * 100}%)");
-            Plugin.DeviceManager.increaseVibration(Config.JumpingStrength.Value);
+            Plugin.Mls.LogInfo($"Client jumped, spiking vibration (+ {Config.VibrateOnJumpStrength.Value * 100}%)");
+            Plugin.DeviceManager.increaseVibration(Config.VibrateOnJumpStrength.Value);
         }
 
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
         private static void IsSprintingPatch(ref PlayerControllerB __instance){
-            if (!Config.RunningEnabled.Value) return;
+            if (!Config.VibrateOnSprint.Value) return;
 
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
 
@@ -51,7 +51,7 @@ namespace RumblingCompany.Patches
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
         private static void IsUsingJetpackPatch(ref PlayerControllerB __instance){
-            if (!Config.JetpackEnabled.Value) return;
+            if (!Config.VibrateOnJetpack.Value) return;
 
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
 
@@ -61,7 +61,7 @@ namespace RumblingCompany.Patches
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
         private static void IsSpectatingPatch(ref PlayerControllerB __instance){
-            if (!Config.SpectatingEnabled.Value) return;
+            if (!Config.VibrateOnSpectate.Value) return;
 
             if (__instance != GameNetworkManager.Instance.localPlayerController) return;
 
@@ -71,7 +71,7 @@ namespace RumblingCompany.Patches
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
         private static void BeingZappedByZapGunPatch(ref PlayerControllerB __instance){
-            if (!Config.BeingZappedEnabled.Value) return;
+            if (!Config.VibrateOnBeingZapped.Value) return;
 
             if (GameNetworkManager.Instance.localPlayerController != __instance) return;
 
@@ -88,7 +88,7 @@ namespace RumblingCompany.Patches
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
         private static void ZappingWithZapGunPatch(ref PlayerControllerB __instance){
-            if (!Config.ZappingEnabled.Value) return;
+            if (!Config.VibrateOnZapping.Value) return;
 
             if (GameNetworkManager.Instance.localPlayerController != __instance) return;
 

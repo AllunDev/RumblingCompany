@@ -8,14 +8,14 @@ namespace RumblingCompany.Patches
         [HarmonyPatch(typeof(RoundManager), "CollectNewScrapForThisRound")]
         [HarmonyPrefix]
         private static void CollectNewScrapForThisRoundPatch(GrabbableObject scrapObject){
-            if (!Config.CollectionEnabled.Value) return;
+            if (!Config.VibrateOnCollect.Value) return;
 
             if (scrapObject.playerHeldBy != GameNetworkManager.Instance.localPlayerController) return;
             
             if (RoundManager.Instance.scrapCollectedThisRound.Contains(scrapObject) || scrapObject.scrapPersistedThroughRounds) return;
 
-            Plugin.Mls.LogInfo($"Client collected scrap, spiking vibration (+ {Config.CollectionStrength.Value * 100}%)");
-            Plugin.DeviceManager.increaseVibration(Config.CollectionStrength.Value);
+            Plugin.Mls.LogInfo($"Client collected scrap, spiking vibration (+ {Config.VibrateOnCollectStrength.Value * 100}%)");
+            Plugin.DeviceManager.increaseVibration(Config.VibrateOnCollectStrength.Value);
         }
     }
 }

@@ -8,10 +8,10 @@ namespace RumblingCompany.Patches
         [HarmonyPatch(typeof(ItemCharger), "ChargeItem")]
         [HarmonyPostfix]
         private static void OnItemChargePatch(){
-            if (!Config.ChargingItemEnabled.Value) return;
+            if (!Config.VibrateOnItemCharge.Value) return;
 
-            Plugin.Mls.LogInfo($"Client charged an item, spiking vibration (+ {Config.ChargingItemStrength.Value * 100}%)");
-            Plugin.DeviceManager.increaseVibration(Config.ChargingItemStrength.Value);
+            Plugin.Mls.LogInfo($"Client charged an item, spiking vibration (+ {Config.VibrateOnItemChargeStrength.Value * 100}%)");
+            Plugin.DeviceManager.increaseVibration(Config.VibrateOnItemChargeStrength.Value);
         }
     }
 }

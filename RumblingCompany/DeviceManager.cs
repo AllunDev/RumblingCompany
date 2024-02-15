@@ -29,7 +29,7 @@ namespace RumblingCompany
         public DeviceManager(string clientName)
         {
             ConnectedDevices = new List<ButtplugClientDevice>();
-            Plugin.Mls.LogInfo($"Attempting to connect to Intiface server at {Config.ServerAdress.Value}");
+            Plugin.Mls.LogInfo($"Attempting to connect to Intiface server at {Config.IntifaceServerAdress.Value}");
             ButtplugClient = new ButtplugClient(clientName);
             Plugin.Mls.LogInfo("Connection successful. Beginning scan for devices");
 
@@ -65,19 +65,19 @@ namespace RumblingCompany
         {
             float continuous = 0f;
 
-            if (isRunning) continuous += Config.RunningStrength.Value;
+            if (isRunning) continuous += Config.VibrateOnSprintStrength.Value;
 
-            if (isUsingJetpack) continuous += Config.JetpackStrength.Value;
+            if (isUsingJetpack) continuous += Config.VibrateOnJetpackStrength.Value;
 
-            if (isSpectating) continuous += Config.SpectatingStrength.Value;
+            if (isSpectating) continuous += Config.VibrateOnSpectateStrength.Value;
 
-            if (isUsingWalkieTalkie) continuous += Config.UsingWalkieTalkieStrength.Value;
+            if (isUsingWalkieTalkie) continuous += Config.VibrateOnUsingWalkieTalkieStrength.Value;
 
-            if (isRecievingWalkieTalkie) continuous += Config.ReceivingWalkieTalkieStrength.Value;
+            if (isRecievingWalkieTalkie) continuous += Config.VibrateOnReceivingWalkieTalkieStrength.Value;
             
-            if (isZapping) continuous += Config.ZappingStrength.Value;
+            if (isZapping) continuous += Config.VibrateOnZappingStrength.Value;
 
-            if (isBeingZapped) continuous += Config.BeingZappedStrength.Value;
+            if (isBeingZapped) continuous += Config.VibrateOnBeingZappedStrength.Value;
 
             return spikeVibration + continuous;
         }
@@ -88,7 +88,7 @@ namespace RumblingCompany
 
             try
             {
-                await ButtplugClient.ConnectAsync(new ButtplugWebsocketConnector(new Uri(Config.ServerAdress.Value)));
+                await ButtplugClient.ConnectAsync(new ButtplugWebsocketConnector(new Uri(Config.IntifaceServerAdress.Value)));
                 await ButtplugClient.StartScanningAsync();
             }
             catch (ButtplugException)
